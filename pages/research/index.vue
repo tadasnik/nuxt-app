@@ -1,11 +1,3 @@
 <template>
-    <HeaderApp></HeaderApp>
+    <h1>Our research</h1>
 </template>
-<script lang="ts">
-import HeaderApp from '@/components/HeaderApp.vue'
-export default {
-  components: {
-      HeaderApp
-  }
-}
-</script>

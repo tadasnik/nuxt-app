@@ -1,9 +1,22 @@
 <template>
   <div>
+      <Header />
+      <Navbar />
     <nuxt />
   </div>
 </template>
 
+<script>
+import Navbar from '@/components/NavbarApp.vue';
+import Header from '@/components/HeaderApp.vue';
+
+export default {
+    components: {
+        Navbar,
+        Header
+    }
+}
+</script>
 <style>
 html {
   font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
