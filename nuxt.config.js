@@ -35,9 +35,9 @@ module.exports = {
   /*
   ** Plugins to load before mounting the App
   */
-  plugins: [
-  ],
-
+    plugins: [
+        { src: '~plugins/d3', ssr: false },
+      ],
   /*
   ** Nuxt.js modules
   */
@@ -45,7 +45,10 @@ module.exports = {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     // Doc:https://github.com/nuxt-community/modules/tree/master/packages/bulma
-    '@nuxtjs/bulma'
+    '@nuxtjs/bulma',
+
+    ['nuxt-leaflet', {ssr: false}]
+
   ],
   /*
   ** Axios module configuration
