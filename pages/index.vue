@@ -1,4 +1,11 @@
 <template>
-    <h1>test test page</h1>
+    <Header></Header>
 </template>
+<script>
+import Header from '@/components/HeaderApp.vue';
+export default {
+    components: {
+        Header
+    }
+}</script>
 
