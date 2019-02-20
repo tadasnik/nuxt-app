@@ -5,10 +5,12 @@
           height="100%"
           x="0%"
           y="0%"
-          fill="#808080"
+          fill="#909090"
+          opacity=0.5
           />
     <path fill="#1cdd87"
             stroke="white"
+            stroke-width="0.5"
           :d="d()" />
   </svg>
 </template>
