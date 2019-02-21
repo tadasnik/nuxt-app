@@ -1,42 +1,52 @@
 <template>
-  <svg class="pan-zoom"
-       ref="svg"
-       width="100%"
-       height="100%">
+  <svg
+    ref="svg"
+    class="pan-zoom"
+    width="100%"
+    height="100%"
+  >
 
     <!-- Tick Axis -->
-    <scale-ticks v-for="item in tickObjects"
-                 :key="item.position"
-                 v-bind="item">
+    <scale-ticks
+      v-for="item in tickObjects"
+      :key="item.position"
+      v-bind="item"
+    >
 
       <template slot-scope="item2">
-        <slot name="tick"
-              v-bind="item2"></slot>
+        <slot
+          name="tick"
+          v-bind="item2"
+        />
       </template>
 
     </scale-ticks>
 
     <g v-if="showGrid">
-      <line v-for="(item, index) in gridLines"
-            :key="'line_' + index"
-            v-bind="item"
-            fill="none"
-            stroke="#808080"
-            opacity=".25" />
+      <line
+        v-for="(item, index) in gridLines"
+        :key="'line_' + index"
+        v-bind="item"
+        fill="none"
+        stroke="#808080"
+        opacity=".25"
+      />
     </g>
 
     <!-- Grid display -->
 
     <!-- Inner Content -->
-    <svg v-if="$slots.default"
-         style="overflow: hidden;"
-         width="100%"
-         height="100%"
-         class="pan-content">
+    <svg
+      v-if="$slots.default"
+      style="overflow: hidden;"
+      width="100%"
+      height="100%"
+      class="pan-content"
+    >
 
       <g v-bind="transformProp">
 
-        <slot></slot>
+        <slot />
       </g>
     </svg>
 
@@ -58,22 +68,25 @@ import {
 } from 'd3'
 import * as d3 from 'd3'
 export default {
+  components: {
+    ScaleTicks
+  },
+  mixins: [bounds],
   inheritAttrs: false,
-  mixins:       [bounds],
-  props:        {
+  props: {
     scaleContent: {
-      type:    Boolean,
+      type: Boolean,
       default: true
     },
     hDomain: {
-      type:     Array,
+      type: Array,
       required: true
     },
     vDomain: {
-      type:     Array,
+      type: Array,
       required: true
     },
-    tickAmount:  Number,
+    tickAmount: Number,
     axisDisplay: {
       type: Array,
       default() {
@@ -94,12 +107,12 @@ export default {
   },
   data() {
     return {
-      rescaleX:      null,
-      rescaleY:      null,
+      rescaleX: null,
+      rescaleY: null,
       transformProp: null,
-      selection:     null,
-      zooming:       false,
-      watcher:       null
+      selection: null,
+      zooming: false,
+      watcher: null
     }
   },
   computed: {
@@ -120,7 +133,7 @@ export default {
 
     /** @returns {ZoomBehavior} */
     zoom() {
-      return zoom()
+      return zoom().scaleExtent([1, 10])
     },
     tickObjects() {
       return this.axisDisplay.map(v => {
@@ -137,7 +150,7 @@ export default {
         return {
           position: v,
           scale,
-          count:    this.tickAmount,
+          count: this.tickAmount,
           transform
         }
       })
@@ -173,9 +186,6 @@ export default {
 
       return prev
     }
-  },
-  components: {
-    ScaleTicks
   },
   mounted() {
     this.selection = d3.select(this.$el)

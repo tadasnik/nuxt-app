@@ -1,71 +1,50 @@
 <template>
-  <div
-    ref="container"
-    class="main-demo fill"
+  <svg
+    :viewBox="viewBoxString"
+    width="800"
+    fill="white"
   >
-    <div class="controls">
-      <h3>Controls</h3>
-      <div class="controls__inner">
-        <!-- Grid Toggle -->
-        <check-box v-model="displayGrid">
-          Grid: {{ displayGrid ? 'ON' : 'OFF' }}
-        </check-box>
-
-        <!-- Zoom Information -->
-        <div>
-          <h4>Transformation</h4>
-          <small>Zoom: {{ transform.k | formatted }}</small>
-          <small>Pan: {{ transform.x | formatted }} x {{ transform.y | formatted }}</small>
-        </div>
-        <button @click="reset">
-          Reset
-        </button>
-      </div>
-    </div>
-
-    <div class="svg">
-      <!-- SVG Entry -->
-      <pan-zoom
-        ref="panzoom"
-        class="panner"
-        :zoom-transform.sync="transform"
-        :h-domain="domain[0]"
-        :v-domain="domain[1]"
-        :scale-content="true"
-        :tick-amount="tickAmount"
-        :axis-display="['bottom', 'top', 'left']"
-        :show-grid="displayGrid"
+    <!-- SVG Entry -->
+    <pan-zoom
+      ref="panzoom"
+      class="panner"
+      :zoom-transform.sync="transform"
+      :h-domain="domain[0]"
+      :v-domain="domain[1]"
+      :scale-content="true"
+      :tick-amount="tickAmount"
+      :axis-display="['bottom', 'top', 'left']"
+      :show-grid="displayGrid"
+    >
+      <!-- Display a custom tick value -->
+      <template
+        slot="tick"
+        slot-scope="d"
       >
-        <!-- Display a custom tick value -->
-        <template
-          slot="tick"
-          slot-scope="d"
-        >
-          <text>
-            {{ d.value | formatted }}
-          </text>
-        </template>
+        <text>
+          {{ d.value | formatted }}
+        </text>
+      </template>
 
-        <circle
-          cx="25"
-          cy="25"
-          r="20"
-          fill="#808080"
-        />
+      <circle
+        cx="25"
+        cy="25"
+        r="20"
+        fill="#808080"
+      />
 
-        <circle
-          cx="50"
-          cy="50"
-          r="10"
-          stroke-width="1"
-          stroke="#000000"
-          fill="#505050"
-        />
+      <circle
+        cx="50"
+        cy="50"
+        r="10"
+        stroke-width="1"
+        stroke="#000000"
+        fill="#505050"
+      />
 
-        <indo-map />
-      </pan-zoom>
-    </div>
-  </div>
+      <indo-map />
+    </pan-zoom>
+  </svg>
 </template>
 
 <script>
@@ -73,13 +52,11 @@ import ScaleZoom from '@/components/ScaleZoom.vue'
 import { format } from 'd3'
 import bounds from '@/mixins/bounds.js'
 import * as gsap from 'gsap'
-import CheckBoxVue from '@/components/CheckBox.vue'
 import IndoMap from '@/components/IndoMap.vue'
 const formatter = format('~s')
 export default {
   components: {
     PanZoom: ScaleZoom,
-    CheckBox: CheckBoxVue,
     IndoMap: IndoMap
   },
   filters: {
@@ -90,6 +67,9 @@ export default {
   mixins: [bounds],
   data() {
     return {
+      mapwidth: 610,
+      mapheight: 230,
+
       // range:  [[0, 100], [0, 500]],
       domain: [[0, 1000], [0, 800]],
       transform: {
@@ -101,6 +81,9 @@ export default {
     }
   },
   computed: {
+    viewBoxString() {
+      return `0 0 ${this.mapwidth} ${this.mapheight}`
+    },
     tickAmount() {
       return Math.max(3, Math.floor(this.dimensions.width / 90))
     }

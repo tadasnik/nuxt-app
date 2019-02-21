@@ -2,7 +2,7 @@ export default {
   data() {
     return {
       dimensions: {
-        width:  0,
+        width: 0,
         height: 0
         // viewBox: '0 0 700 700'
       }
@@ -21,7 +21,6 @@ export default {
   mounted() {
     window.addEventListener('resize', this.updateDimensions)
     this.updateDimensions()
-
   },
   activated() {
     window.addEventListener('resize', this.updateDimensions)

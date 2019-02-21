@@ -1,11 +1,15 @@
 <template>
   <label class="checkbox">
-    <input type="checkbox"
-           :checked="value"
-           @change="emit" />
+    <input
+      type="checkbox"
+      :checked="value"
+      @change="emit"
+    >
 
-    <span v-if="$slots.default"
-          class="checkbox__label">
+    <span
+      v-if="$slots.default"
+      class="checkbox__label"
+    >
       <slot>
         Hello
       </slot>
@@ -15,14 +19,14 @@
 
 <script>
 export default {
+  model: {
+    prop: 'value',
+    event: 'change'
+  },
   props: {
     value: {
       type: Boolean
     }
-  },
-  model: {
-    prop:  'value',
-    event: 'change'
   },
   data() {
     return {}

@@ -1,21 +1,25 @@
 <template>
-  <g class="scale-ticks"
-     :class="[position]">
-
+  <g
+    class="scale-ticks"
+    :class="[position]"
+  >
     <!-- Tick instance -->
-    <g v-for="(item, index) in ticks"
-       :key="index"
-       :transform="item.transform">
-
+    <g
+      v-for="(item, index) in ticks"
+      :key="index"
+      :transform="item.transform"
+    >
       <!-- Tick Line -->
-      <line v-bind="item.lineTransform"
-            stroke="#fff"
-            stroke-width="2" />
+      <line
+        v-bind="item.lineTransform"
+        stroke="#fff"
+        stroke-width="2"
+      />
 
       <!-- Text -->
       <g v-bind="item.textTransform">
         <slot v-bind="item">
-          <text>{{item.value}}</text>
+          <text>{{ item.value }}</text>
         </slot>
       </g>
     </g>
@@ -30,11 +34,11 @@
 export default {
   props: {
     scale: {
-      type:     Function,
+      type: Function,
       required: true
     },
     position: {
-      type:    String,
+      type: String,
       default: 'left',
       validator(val) {
         return ['left', 'top', 'right', 'bottom'].includes(val)
@@ -42,12 +46,12 @@ export default {
     },
     count: {
       type: Number,
-      default: 10,
+      default: 10
     },
     scaleContent: {
-      type:    Boolean,
+      type: Boolean,
       default: true
-    },
+    }
   },
   computed: {
     ticks() {

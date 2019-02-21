@@ -2,21 +2,21 @@
   <section class="section">
     <div class="container">
       <h1 class="title">
-        indonesia maps
+        indonesia maps zoom
       </h1>
       <h2 class="subtitle">
         what not
       </h2>
-      <indomap />
+      <democomp />
     </div>
   </section>
 </template>
 
 <script>
-import IndoMap from '@/components/IndoMap.vue'
+import DemoComponent from '@/components/DemoComponent_mod.vue'
 export default {
   components: {
-    indomap: IndoMap
+    democomp: DemoComponent
   }
 }
 </script>

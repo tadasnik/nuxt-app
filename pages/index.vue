@@ -1,11 +1,11 @@
 <template>
-    <Header></Header>
+  <Header />
 </template>
 <script>
-import Header from '@/components/HeaderApp.vue';
+import Header from '@/components/HeaderApp.vue'
 export default {
-    components: {
-        Header
-    }
-}</script>
-
+  components: {
+    Header
+  }
+}
+</script>
