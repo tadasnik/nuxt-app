@@ -2,8 +2,6 @@
   <svg
     ref="svg"
     class="pan-zoom"
-    width="100%"
-    height="100%"
   >
 
     <!-- Tick Axis -->
@@ -22,7 +20,7 @@
 
     </scale-ticks>
 
-    <g v-if="showGrid">
+    <g>
       <line
         v-for="(item, index) in gridLines"
         :key="'line_' + index"

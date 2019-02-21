@@ -1,11 +1,10 @@
 <template>
   <svg
     :viewBox="viewBoxString"
-    width="800"
     fill="white"
   >
     <!-- SVG Entry -->
-    <pan-zoom
+    <pan-zoom v-if="displayGrid"
       ref="panzoom"
       class="panner"
       :zoom-transform.sync="transform"
@@ -68,16 +67,16 @@ export default {
   data() {
     return {
       mapwidth: 610,
-      mapheight: 230,
+      mapheight: 225,
 
       // range:  [[0, 100], [0, 500]],
-      domain: [[0, 1000], [0, 800]],
+      domain: [[0, 610], [0, 225]],
       transform: {
         k: 1,
         x: 0,
         y: 0
       },
-      displayGrid: false
+      displayGrid: true
     }
   },
   computed: {
@@ -106,63 +105,5 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-div.main-demo {
-  display: grid;
-  grid: 100px 1fr / 100%;
-  row-gap: 20px;
-  position: absolute;
-  top: 0;
-  left: 50px;
-  bottom: 50px;
-  right: 10px;
-  width: auto;
-  height: auto;
-
-  .controls {
-    padding: 20px 40px;
-    background-color: rgba(#808080, 0.25);
-
-    display: grid;
-    grid: auto / 150px 1fr;
-    column-gap: 20px;
-    align-items: center;
-
-    > h3 {
-      padding: 10px 25px;
-    }
-
-    &__inner {
-      display: flex;
-      flex-flow: row nowrap;
-      align-items: center;
-
-      > * {
-        margin-right: 20px;
-
-        &:last-child {
-          margin-right: 0;
-          margin-left: auto;
-        }
-      }
-    }
-  }
-
-  > .svg {
-    width: 100%;
-    height: 100%;
-    // overflow: hidden;
-    position: relative;
-    .panner {
-      border: 1px solid rgba(#808080, 0.5);
-    }
-  }
-}
-
-svg {
-  left: auto;
-  top: auto;
-  width: 100%;
-  height: 100%;
-}
+<style>
 </style>

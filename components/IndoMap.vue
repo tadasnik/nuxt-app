@@ -31,7 +31,7 @@ export default {
   data() {
     return {
       mapwidth: 610,
-      mapheight: 230,
+      mapheight: 225,
 
       d: null,
       projection: d3
@@ -45,6 +45,7 @@ export default {
   },
   computed: {
     viewBoxString() {
+      console.log(`0 0 ${this.mapwidth} ${this.mapheight}`)
       return `0 0 ${this.mapwidth} ${this.mapheight}`
     },
     realProjection() {
@@ -55,12 +56,17 @@ export default {
         .precision(0.1)
     }
   },
-  beforeMount() {
-    this.path = d3.geoPath().projection(this.projection)
-    this.d = () => this.path(land)
-  },
+
+    created () {
+      console.log('created', this);
+        this.path = d3.geoPath().projection(this.projection)
+        this.d = () => this.path(land)
+    },
   mounted() {
     // determine scale and translation for the plot
+    console.log('mounted')
+    this.path = d3.geoPath().projection(this.projection)
+    this.d = () => this.path(land)
     const b = this.path.bounds(land)
     this.scaler =
       0.99 /
