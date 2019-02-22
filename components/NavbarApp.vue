@@ -35,6 +35,11 @@
           Fire maps
         </nuxt-link>
 
+        <nuxt-link to="/maps_panzoom" class="navbar-item" active-class="is-active" exact>
+          maps_panzoom
+        </nuxt-link>
+
+
         <nuxt-link to="/zooming" class="navbar-item" active-class="is-active" exact>
           zooming
         </nuxt-link>

@@ -10,24 +10,41 @@
     <div class="tile is-ancestor">
       <div class="tile">
 
-          <indo-map />
+          <base-map :zoom-transform.sync="zoomTransform"/>
         <!-- Add content or other tiles -->
       </div>
       <div class="tile">
 
-          <indo-map />
+          <base-map :zoom-transform.sync="zoomTransform"/>
         <!-- Add content or other tiles -->
       </div>
+      <div class="tile">
+
+          <base-map :zoom-transform.sync="zoomTransform"/>
+        <!-- add content or other tiles -->
+      </div>
+
+
     </div>
-    </div>
+      </div>
   </section>
 </template>
 
 <script>
-import IndoMap from '@/components/IndoMap.vue'
+import BaseMap from '@/components/BaseMap_mod.vue'
 export default {
   components: {
-    IndoMap: IndoMap
+    BaseMap: BaseMap
+  },
+   data() {
+       return {
+  zoomTransform: {
+        k: 1,
+        x: 0,
+        y: 0
+      },
+    }
+   }
   }
-}
+
 </script>
